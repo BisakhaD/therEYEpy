@@ -4,41 +4,88 @@ import movingBot from "../images/TherapyPage/Follow Me.png";
 
 import "../style/therapy.css";
 
+
+const axios = require('axios').default;
+
 class Therapy extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            x: 1,
-            up: true
+            x: 0,
+            up: true,
+            send: false,
+            start: false,
+            gaze: null
         };
 
         this.followMe = this.followMe.bind(this);
+        this.startMovement = this.startMovement.bind(this);
+        this.stopMovement = this.stopMovement.bind(this);
+        this.checkPosition = this.checkPosition.bind(this);
+    }
+
+    checkPosition() {
+        this.setState({
+            send: true
+        })
+        const thisObj = this;
+        axios.get('http://localhost:5000/checkmovement')
+            .then((resp) => {
+                console.log(resp);
+                thisObj.setState({
+                    send: false,
+                    start: true,
+                    gaze: resp.data
+                })
+            })
+            .catch((err) => {
+                console.log(err);
+                thisObj.setState({
+                    send: false,
+                    start: true
+                })
+            })
     }
 
     followMe() {
-        console.log(this.state.x);
-        if (this.state.up) {
-            if(this.state.x === 89){
+        if (this.state.up && this.state.start) {
+            if (this.state.x === 89) {
                 this.setState({
-                    up: false
+                    up: false,
+                    start: false
                 });
+                this.checkPosition()
             }
             this.setState({
-                x : this.state.x+1
+                x: this.state.x + 1
             });
         }
-        else{
-            if(this.state.x === 0){
+        else if (this.state.start) {
+            if (this.state.x === 0) {
                 this.setState({
-                    up: true
+                    up: true,
+                    start: false
                 });
+                this.checkPosition()
             }
             this.setState({
-                x : this.state.x-1
+                x: this.state.x - 1
             });
         }
+    }
+
+    startMovement() {
+        this.setState({
+            start: true
+        })
+    }
+
+    stopMovement() {
+        this.setState({
+            start: false
+        })
     }
 
     componentDidMount() {
@@ -50,7 +97,7 @@ class Therapy extends Component {
             window.kommunicate = m; m._globals = kommunicateSettings;
         })(document, window.kommunicate || {});
 
-        setInterval(this.followMe,100);
+        setInterval(this.followMe, 100);
     }
 
     render() {
@@ -59,6 +106,22 @@ class Therapy extends Component {
                 <div className="row follow">
                     <img className="movingBot" src={movingBot} alt="Moving Bot" style={{ transform: "translateX(" + this.state.x + "em)" }} />
                 </div>
+                <div className="row" style={{ marginTop: "1rem" }}>
+                    <div style={{ marginLeft: "2rem" }}>
+                        <button type="button" class="btn btn-primary" style={{ background: "#6b9b79" }} onClick={this.startMovement}>
+                            Start
+                    </button>
+                    </div>
+                    <div style={{ marginLeft: "1rem" }}>
+                        <button type="button" class="btn btn-primary" style={{ background: "#6b9b79" }} onClick={this.stopMovement}>
+                            Stop
+                    </button>
+                    </div>
+                </div>
+                <div>
+                    {this.state.gaze}
+                </div>
+
                 <img className="leaves" src={leaves} alt="leave" />
             </>
         )

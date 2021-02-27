@@ -1,20 +1,14 @@
 import  React,{ Component } from "react";
+import infoImage from "../images/Information/Group 27.png"
+
+import "../style/information.css"
 
 class Information extends Component{
-
-    constructor(props){
-        super(props);
-
-        this.state = {
-
-        }
-        
-    }
 
     render(){
         return(
             <>
-            Informations
+             <img className = "InfoImage" src={infoImage} alt = "Information Page"/>
             </>
         )
 
