@@ -10,7 +10,34 @@ class Therapy extends Component {
         super(props);
 
         this.state = {
+            x: 1,
+            up: true
+        };
 
+        this.followMe = this.followMe.bind(this);
+    }
+
+    followMe() {
+        console.log(this.state.x);
+        if (this.state.up) {
+            if(this.state.x === 89){
+                this.setState({
+                    up: false
+                });
+            }
+            this.setState({
+                x : this.state.x+1
+            });
+        }
+        else{
+            if(this.state.x === 0){
+                this.setState({
+                    up: true
+                });
+            }
+            this.setState({
+                x : this.state.x-1
+            });
         }
     }
 
@@ -22,13 +49,15 @@ class Therapy extends Component {
             var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
             window.kommunicate = m; m._globals = kommunicateSettings;
         })(document, window.kommunicate || {});
+
+        setInterval(this.followMe,100);
     }
 
     render() {
         return (
             <>
                 <div className="row follow">
-                    <img className="movingBot" src={movingBot} alt="Moving Bot" style = {{transform:"translate(2px)"}}/>
+                    <img className="movingBot" src={movingBot} alt="Moving Bot" style={{ transform: "translateX(" + this.state.x + "em)" }} />
                 </div>
                 <img className="leaves" src={leaves} alt="leave" />
             </>

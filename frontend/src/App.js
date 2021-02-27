@@ -8,6 +8,7 @@ import Home from "./component/Home";
 import Information from "./component/Information";
 import Navbar from "./component/Navbar";
 import Therapy from "./component/Therapy";
+import Game from "./component/Game";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path = '/help'><Help /></Route>
           <Route path = '/information'><Information /></Route>
           <Route path = '/therapy'><Therapy /></Route>
+          <Route path = '/game'><Game /></Route>
         </Switch>
       </Router>
       

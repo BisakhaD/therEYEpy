@@ -23,7 +23,8 @@ class Navbar extends Component {
                 <div className="options row col-11 justify-content-end my-auto">
                     <div><Link to='/'>Home</Link></div>
                     <div><Link to='/information'>Information</Link></div>
-                    <div><Link to='/therapy'>Therapy</Link></div>
+                    <div><Link to='/therapy'>Therapy</Link></div>                    
+                    <div><Link to='/game'>Game</Link></div>
                     <div><Link to='/help'>Help</Link></div>
                 </div>
             </ div>
