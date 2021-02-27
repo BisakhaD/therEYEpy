@@ -1,0 +1,19 @@
+.options div {
+    padding: 20px;
+}
+.navbar {
+    background-color: #b0dec1;
+}
+
+.logo img{
+    width: 150%;
+    height: auto;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+}

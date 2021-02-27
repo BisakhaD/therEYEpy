@@ -62,7 +62,7 @@ while cap.isOpened():
     
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)    
     faces = detector(gray)
-    
+
     for face in faces:
         shapes = predictor(gray, face)        
 
@@ -82,6 +82,7 @@ while cap.isOpened():
             x= shapes.part(n).x
             y = shapes.part(n).y
             next_point = n+1
+            
             if n==47:
                 next_point = 42 
             
