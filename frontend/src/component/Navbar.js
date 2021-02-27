@@ -18,7 +18,7 @@ class Navbar extends Component {
         return (
             <div className="row navbar">
                 <div className="logo col-1">
-                   <Link to='/'> <img src={logo} alt="logo" /></ Link>
+                   <Link to='/'> <img classname = "logo" src={logo} alt="logo" /></ Link>
                 </div>
                 <div className="options row col-11 justify-content-end my-auto">
                     <div><Link to='/'>Home</Link></div>
