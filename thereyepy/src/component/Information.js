@@ -14,6 +14,7 @@ class Information extends Component{
     render(){
         return(
             <>
+            Informations
             </>
         )
 

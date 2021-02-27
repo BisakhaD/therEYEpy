@@ -14,6 +14,7 @@ class Therapy extends Component{
     render(){
         return(
             <>
+            Therapy
             </>
         )
 

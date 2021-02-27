@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter as Router,Switch, Route, Link} from "react-router-dom";
 
@@ -11,11 +12,11 @@ import Therapy from "./component/Therapy";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
+    <div className="App">      
       <Router>
+      <Navbar />
         <Switch>
-          <Route path = '/'><Home /></Route>
+          <Route exact path = '/'><Home /></Route>
           <Route path = '/help'><Help /></Route>
           <Route path = '/information'><Information /></Route>
           <Route path = '/therapy'><Therapy /></Route>

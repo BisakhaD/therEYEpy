@@ -14,6 +14,7 @@ class Help extends Component{
     render(){
         return(
             <>
+            Help
             </>
         )
 
