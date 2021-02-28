@@ -27,6 +27,9 @@ cap = cap = cv2.VideoCapture(0)
 
 def getGaze():
 
+    if cap == None:
+        start()
+    print(cap)
     gazeL = []
 
     def detect_gaze(eye_img):
@@ -137,10 +140,13 @@ def hello_world():
     return 'Hello, World!'
 
 def start():
-   cap = cv2.VideoCapture(0)    
+    global cap 
+    if cap == None:
+        cap = cv2.VideoCapture(0)    
 
 @app.route("/checkmovement")
 def check_movement():
+    global cap
     if cap == None:
         start()
     t = getGaze()
@@ -148,10 +154,12 @@ def check_movement():
 
 @app.route("/stopCapturing")
 def stopCapture():
-    cap.release()
-    cv2.destroyAllWindows() 
-    cap = None
-    return
+    global cap
+    if cap != None:
+        cap.release()
+        cv2.destroyAllWindows() 
+        cap = None
+    return "Stopped"
 
 if __name__ == '__main__':
     app.run()

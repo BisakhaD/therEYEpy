@@ -15,9 +15,10 @@ class Therapy extends Component {
         this.state = {
             x: 0,
             up: true,
-            send: false,
             start: false,
-            gaze: null
+            gaze: "default",
+            count: 0
+
         };
 
         this.followMe = this.followMe.bind(this);
@@ -27,23 +28,34 @@ class Therapy extends Component {
     }
 
     checkPosition() {
-        this.setState({
-            send: true
-        })
         const thisObj = this;
         axios.get('http://localhost:5000/checkmovement')
             .then((resp) => {
                 console.log(resp);
+                if (!this.state.up && (resp.data !== 'right')) {
+                    thisObj.setState({
+                        count: thisObj.state.count + 1
+                    });
+                }
+                else if (this.state.up && (resp.data !== 'left')) {
+                    thisObj.setState({
+                        count: thisObj.state.count + 1
+                    })
+                }
+                else {
+                    thisObj.setState({
+                        count: 0
+                    })
+                }
                 thisObj.setState({
-                    send: false,
                     start: true,
                     gaze: resp.data
                 })
+                console.log("Count : ", thisObj.state.count);
             })
             .catch((err) => {
                 console.log(err);
                 thisObj.setState({
-                    send: false,
                     start: true
                 })
             })
@@ -85,7 +97,10 @@ class Therapy extends Component {
     stopMovement() {
         this.setState({
             start: false
-        })
+        });
+        axios.get('http://localhost:5000/stopCapturing')
+            .then((resp) => { })
+            .catch((err) => { })
     }
 
     componentDidMount() {
@@ -118,10 +133,9 @@ class Therapy extends Component {
                     </button>
                     </div>
                 </div>
-                <div>
-                    {this.state.gaze}
+                <div className = "row" style = {{margin : "1rem"}}>                 
+                        You are looking : {this.state.gaze}               
                 </div>
-
                 <img className="leaves" src={leaves} alt="leave" />
             </>
         )
