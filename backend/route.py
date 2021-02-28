@@ -130,10 +130,16 @@ def getGaze():
   
             if len(gazeL) == 7:                
                 temp = collections.Counter(gazeL)
-                t = list(temp.keys())[0]
-                print(temp)
-                print(list(temp.keys()))
-                return t
+                t = list(temp.keys())
+                if(len(t)>0):
+                    print(temp)
+                    print(t)
+                    if (t[0] == 'center'):
+                        return t[1]
+                    else : 
+                        return t[0]                   
+                    
+                return t[0]
 
 @app.route('/')
 def hello_world():    

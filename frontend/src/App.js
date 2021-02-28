@@ -8,7 +8,7 @@ import Home from "./component/Home";
 import Information from "./component/Information";
 import Navbar from "./component/Navbar";
 import Therapy from "./component/Therapy";
-import Game from "./component/Game";
+import BreakGame from "./component/BreakGame";
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Route path = '/help'><Help /></Route>
           <Route path = '/information'><Information /></Route>
           <Route path = '/therapy'><Therapy /></Route>
-          <Route path = '/game'><Game /></Route>
+          <Route path = '/game'><BreakGame /></Route>
         </Switch>
       </Router>
       

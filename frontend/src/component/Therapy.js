@@ -133,9 +133,17 @@ class Therapy extends Component {
                     </button>
                     </div>
                 </div>
-                <div className = "row" style = {{margin : "1rem"}}>                 
-                        You are looking : {this.state.gaze}               
+                <div className="row" style={{ margin: "1rem" }}>
+                    You are looking : {this.state.gaze}
                 </div>
+                {(this.state.count >= 2)?
+                    <div>
+                        You seemed to have got lost in your past.<br />
+                        Take a break and play a game if you are feeling overwhelmed
+                    </div>
+                    :
+                    null
+                }
                 <img className="leaves" src={leaves} alt="leave" />
             </>
         )
