@@ -1,4 +1,8 @@
 import  React,{ Component } from "react";
+import helpimage from "../images/HelpPage/Help Page1.png";
+import '../style/help.css';
+
+
 
 class Help extends Component{
 
@@ -14,7 +18,7 @@ class Help extends Component{
     render(){
         return(
             <>
-            Help
+                <img className = "HelpImage" src={helpimage} alt = "Help Page content"/>
             </>
         )
 

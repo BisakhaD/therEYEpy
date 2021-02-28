@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import homeImage from "../images/HomePage_main/Group 23.png";
+import homeImage from "../images/HomePage_main/Home Page.png";
 import '../style/home.css';
 
 class Home extends Component {
